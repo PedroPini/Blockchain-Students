@@ -43,17 +43,17 @@ let userObject = {
     //DELETE
     delete userObject.email;                     // removes the email key
     delete userObject['favourite_foods'];  
-    console.log(userObject)
+    // console.log(userObject)
 
     for (let key in userObject) {
         if (userObject.hasOwnProperty(key)) {
-          console.log(`${key}: ${userObject[key]}`);
+        //   console.log(`${key}: ${userObject[key]}`);
         }
       }
 
-    console.log(Object.entries(userObject));
+    // console.log(Object.entries(userObject));
       Object.entries(userObject).forEach(([key, value]) => {
-        console.log(`${key}: ${value}`);
+        // console.log(`${key}: ${value}`);
       });
 
 
@@ -66,3 +66,55 @@ let userObject = {
     } else {
         //console.log(false)
     }
+
+
+//SET
+let trainerSet = new Set();
+trainerSet.add('Don');
+
+trainerSet.add('Nidup');
+
+trainerSet.add('Jonathan');
+
+trainerSet.add('Don');
+
+
+//ADD
+trainerSet.add('Winnie');
+
+//SET
+if (trainerSet.has('Don')) {
+    trainerSet.delete('Don');
+    trainerSet.add('Donnie');
+  }
+
+//REMOVE
+trainerSet.delete('Nidup');
+
+//LOOP
+for (let trainer of trainerSet) {
+    // console.log(`Trainer: ${trainer}`);
+  }
+// console.log(trainerSet);
+
+//MAP
+let translations = new Map();
+
+translations.set('hello', 'bonjour');
+translations.set('goodbye', 'au revoir');
+
+//ADD
+translations.set('thanks', 'merci'); 
+
+//SET
+translations.set('hello', 'salut'); 
+
+translations.delete('goodbye'); 
+// translations.clear();  
+
+translations.forEach((value, key) => {
+    console.log(`${key} => ${value}`);
+  });
+  
+// console.log(translations.get('hello'));
+// console.log(translations);
