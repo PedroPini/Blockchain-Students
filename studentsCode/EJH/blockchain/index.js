@@ -3,6 +3,7 @@
 // git add *
 // git commit -m "Initial commit of cryptography"
 // git push origin EJHCrypto
+/// go and pull request in github. 
 // git checkout main
 // git pull origin main
 
@@ -11,6 +12,36 @@ const crypto = require("crypto"); //ES6
 function hashData(data){
     return crypto.createHash('sha256').update(data).digest('hex');
 }
+
+function createMerkleTree (transactions) {
+    if(transactions.length === 0) {
+        return null;
+    }
+
+    if(transactions.length === 1) {
+        return hashData(transactions[0]);
+    }
+
+    const newLevel = [];
+    for (let i = 0; i<transactions.length; i+=2) {
+        if(i+1 < transactions.length) {
+            newLevel.push(hashData(transactions[i], transactions[i+1]));
+            
+
+        } else {
+            newLevel.push(transactions[i]);
+        }
+    }
+
+    return createMerkleTree(newLevel);
+
+}
+
+const transactions = ['1', '2', '3', '4'];
+
+const merkleRoot = createMerkleTree(transactions);
+
+console.log("Merkle Tree: ", merkleRoot);
 
 // const message = "Hello Equinim";
 
@@ -83,10 +114,14 @@ class Blockchain {
 // console.log(blockchain.getLatestBlock().hash);
 
 const blockchain = new Blockchain();
+console.log("Genesis", blockchain)
 blockchain.addBlock(['Transaction 1', 'Transaction 2']);
+console.log("\n 1 Block", blockchain);
 blockchain.addBlock(['Transaction 3', 'Transaction 4']);
+console.log("\n 2 Block", blockchain);
 const newBlock = blockchain.minePendingTransactions();
-console.log("NEW BLOCK: ", newBlock);
+console.log("\n Reward Block", newBlock);
+//console.log("NEW BLOCK: ", newBlock);
 
 function generateKeyPair() {
     return crypto.generateKeyPairSync('rsa', {
@@ -119,3 +154,5 @@ const message = "Hello World!";
 const signature =signMessage(privateKey, message);
 const isValid = verifySignature(publicKey, signature, message);
 console.log('Signature is Valid: ', isValid);
+
+
