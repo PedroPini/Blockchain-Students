@@ -57,18 +57,21 @@ class Block {
     }
 
     mineBlock(difficulty) {
+        if(!difficulty) {
+            return null;
+        }
         const target = "0".repeat(difficulty);
         while(this.hash.substring(0, difficulty) !== target) {
             this.nonce++;
-            this.hash = this.hashData();
+            this.hash = this.calculateHashBlock();
         }
         console.log(`Mined: ${this.hash}`);
     }
 }
 
-// const genesisBlock = new Block(0, [], "0");
-
-// console.log(`Genesis Block Hash: ${genesisBlock.hash}`);
+const genesisBlock = new Block(0, [], "0");
+genesisBlock.mineBlock(2);
+console.log(`Genesis Block Hash: ${genesisBlock.hash}`);
 
 class Blockchain {
     constructor() {
@@ -97,7 +100,7 @@ class Blockchain {
 
 // const blockchain = new Blockchain();
 
-blockchain.addBlock(['Transaction 1', 'Transaction 2']);
+// blockchain.addBlock(['Transaction 1', 'Transaction 2']);
 // console.log(blockchain.getLatestBlock());
 // blockchain.addBlock(['Transaction 3', 'Transaction 4']);
 // console.log(blockchain.getLatestBlock());
