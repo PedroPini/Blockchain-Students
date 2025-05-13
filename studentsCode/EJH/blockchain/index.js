@@ -106,12 +106,12 @@ class Blockchain {
 
 }
 
-// const blockchain = new Blockchain();
+const blockchain = new Blockchain();
 
-// blockchain.addBlock(['Transaction 1', 'Transaction 2']);
-// blockchain.addBlock(['Transaction 3', 'Transaction 4']);
-// console.log(blockchain.getLatestBlock());
-// console.log(blockchain.getLatestBlock().hash);
+blockchain.addBlock(['Transaction 1', 'Transaction 2']);
+blockchain.addBlock(['Transaction 3', 'Transaction 4']);
+console.log(blockchain.getLatestBlock());
+console.log(blockchain.getLatestBlock().hash);
 
 const blockchain = new Blockchain();
 console.log("Genesis", blockchain)
