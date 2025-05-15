@@ -98,8 +98,23 @@ print(fruit1)
 print(fruit2)
 print(fruit3)
 
+# multiple lines assigning to a var. 
+# auto break 
+
+a = "really long text that takes forever " \
+"to see on a page so it's really really long"
+
+a = '''
+type a hyge long amount of text regardless of how long it is,
+the whole thing will still print
+helpful for sql queries and breaking queries.
+'''
+
+print(a)
 
 
-
+# string as an array
+a = "Hello World"
+print(a[1])
 
 
